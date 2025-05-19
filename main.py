@@ -11,13 +11,19 @@ def main():
     #create a variable to store the number of stones
     stones_num = 20
     # create a variable to indicate the player. 1 means player 1, 2 means player 2
-    player = 1
+    current_player = 1 
+    # create a function to switch player
+    def switch_player(current_player):
+        if current_player == 1:
+            return 2
+        else:
+            return 1
     #repeat the following as long as the number of stones > 0
     while(stones_num > 0):
     #print a statement to indicate the current number of stones
         print(f"There are {stones_num} stones left.")
     #get the user's input on 1 or 2 stones he/she would like to remove
-        user_action = input(f"Player {player} would you like to remove 1 or 2 stones? ")
+        user_action = input(f"Player {current_player} would you like to remove 1 or 2 stones? ")
         #keeps explaining to the user that he/she needs to enter a 1 or 2 integer if his/her input is invalid
         while user_action != "1" and user_action != "2":
             user_action = input("Please enter 1 or 2: ")
@@ -27,14 +33,11 @@ def main():
             user_number = int(user_action)
             stones_num = stones_num - user_number
             #switch player for the next round
-            if player == 1:
-                player = player + 1
-            else: 
-                player = player - 1
+            current_player = switch_player(current_player)
     #print an empty line
         print("")
     #print the winner when there are no stones left
-    print(f"Player {player} wins!")
+    print(f"Player {current_player} wins!")
 
 
 if __name__ == '__main__':
